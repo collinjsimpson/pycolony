@@ -1,0 +1,45 @@
+---- pycolony ----
+	
+	The main game class. This stores all information related to the game board (exluding player input sources). The move() function allows input events to be passed and processed, updating the board state accordingly.
+
+	def __init__(self,rows=10,cols=10):
+	def set_colorblind(self,color_blind):
+	def isover(self):
+	def getscore(self):
+	def getwinner(self):
+	def check_move(self,src,tar):
+	def move(self,src,tar):
+	def next_turn(self):
+	def p(self):
+	def clear_new_tiles(self):
+	def setcorners(self):
+
+---- Agent ----
+
+	An abstract class which serves as a template for all input sources. Classes that subclass Agent must
+	define the getmove() and reset() methods. This makes it easier to develop different input sources
+	(keyboard input, input from artificial intelligence, etc). The getmove() method must be passed a copy
+	of a 'pycolony' to operate on. It's advantageous for an Agent to keep track of information during a
+	game, so Agents are free to define and use whatever they want within their class. The reset() method allows
+	that information to be wiped if desired.
+
+	def getmove(self, colony):
+	def reset(self):
+
+---- CLIAgent ----
+
+	A subclass of Agent which allows game moves to be extracted from the keyboard. This agent also prints the
+	current player's turn, the game board, and an input prompt with error-checking for invalid moves.
+
+	def __init__(self):
+	def getmove(self, pc): # pass a copy of the game world to this agent
+	def reset(self):
+
+---- Game ----
+
+	The class used to pit two or more agents against each other in a given pycolony instance. Input
+	alternates between agents until an end-game condition is met.
+
+	def __init__(self, ag1, ag2, pc):
+	def next_turn(self):
+	def loop(self):
